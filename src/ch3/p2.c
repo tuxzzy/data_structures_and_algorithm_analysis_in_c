@@ -12,8 +12,8 @@ int main(void) {
     
     print_lots(list, lots);
     
-    free(list);
-    free(lots);
+    free_list(list);
+    free_list(lots);
     
     return 0;
 }
