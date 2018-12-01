@@ -78,3 +78,67 @@ void swap_adjacent(ptr_to_node head, ptr_to_node p1, ptr_to_node p2) {
     
     *p = p2;
 }
+
+ptr_to_node intersect_sorted_list(ptr_to_node list1, ptr_to_node list2) {
+    ptr_to_node head = malloc(sizeof (struct Node));
+    ptr_to_node p1, p1_free, p2, p2_free, p = head;
+    int v1, v2;
+    
+    head->next = NULL;
+    
+    for (p1 = list1->next, p2 = list2->next; p1 != NULL && p2 != NULL; ) {
+        if (p1->val == p2->val) {
+            p->next = p1;
+            p = p1;
+            
+            p2_free = p2;
+            
+            p1 = p1->next;
+            p2 = p2->next;
+            
+            free(p2_free);
+            
+            // set head pointer
+            if (head->next == NULL) {
+                head->next = p1;
+            }
+            
+            continue;
+        }
+        
+        if (p1->val < p2->val) {
+            p1_free = p1;
+            p1 = p1->next;
+            
+            free(p1_free);
+            
+            continue;
+        }
+        
+        if (p1->val > p2->val) {
+            p2_free = p2;
+            p2 = p2->next;
+            
+            free(p2_free);
+        }
+    }
+    
+    p->next = NULL;
+    
+    return head;
+}
+
+ptr_to_node init_list(int* values, int size) {
+    ptr_to_node head = malloc(sizeof (struct Node)), p = head;
+    int i;
+    
+    head->next = NULL;
+    for (i = 0; i < size; i++) {
+        p->next = malloc(sizeof (struct Node));
+        p = p->next;
+        p->val = values[i];
+        p->next = NULL;
+    }
+    
+    return head;
+}
