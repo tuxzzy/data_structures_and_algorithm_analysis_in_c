@@ -1,7 +1,4 @@
-struct Node {
-    int val;
-    struct Node *next;
-};
+struct Node;
 
 typedef struct Node *ptr_node;
 

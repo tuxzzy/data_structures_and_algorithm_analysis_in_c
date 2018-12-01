@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include "node.c"
 
 ptr_node init_lots(int* lots, int size);
 void print_lots(ptr_node list, ptr_node p);

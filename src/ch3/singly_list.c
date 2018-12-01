@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include "node.c"
 
 struct Node *init_common_list(int list_len) {
     int i;
