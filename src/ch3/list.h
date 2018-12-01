@@ -1,6 +1,6 @@
 struct Node;
 
-typedef struct Node *ptr_node;
+typedef struct Node *ptr_to_node;
 
 struct Node *init_common_list(int list_len);
 
