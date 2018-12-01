@@ -43,3 +43,38 @@ void free_list(struct Node *head) {
         free(q);
     }
 }
+
+ptr_to_node find(ptr_to_node head, int index) {
+    int i;
+    ptr_to_node p;
+    
+    for (i = 0, p = head->next; p != NULL; i++, p = p->next) {
+        if (i == index) {
+            return p;
+        }
+    }
+    
+    return NULL;
+}
+
+void swap_adjacent(ptr_to_node head, ptr_to_node p1, ptr_to_node p2) {
+    ptr_to_node *p = &head->next;
+    
+    if (p1 == NULL || p2 == NULL) {
+        perror("p1 or p2 is NULL");
+        exit(EXIT_FAILURE);
+    }
+    
+    p1->next = p2->next;
+    p2->next = p1;
+    
+    for (; *p != NULL && *p != p1; p = &(*p)->next)
+        ;
+        
+    if (*p == NULL) {
+        perror("p is NULL");
+        exit(EXIT_FAILURE);
+    }
+    
+    *p = p2;
+}
