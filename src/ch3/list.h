@@ -15,3 +15,5 @@ void swap_adjacent(ptr_to_node head, ptr_to_node p1, ptr_to_node p2);
 ptr_to_node intersect_sorted_list(ptr_to_node list1, ptr_to_node list2);
 
 ptr_to_node init_list(int* values, int size);
+
+ptr_to_node union_sorted_list(ptr_to_node list1, ptr_to_node list2);

@@ -142,3 +142,68 @@ ptr_to_node init_list(int* values, int size) {
     
     return head;
 }
+
+ptr_to_node union_sorted_list(ptr_to_node list1, ptr_to_node list2) {
+    ptr_to_node head = malloc(sizeof (struct Node));
+    ptr_to_node p1, p2, p2_free, p = head;
+    int v1, v2;
+    
+    head->next = NULL;
+    
+    for (p1 = list1->next, p2 = list2->next; p1 != NULL && p2 != NULL; ) {
+        if (p1->val == p2->val) {
+            // set head pointer
+            if (head->next == NULL) {
+                head->next = p1;
+            }
+            
+            p->next = p1;
+            p = p1;
+            
+            p2_free = p2;
+            
+            p1 = p1->next;
+            p2 = p2->next;
+            
+            free(p2_free);
+       
+            continue;
+        }
+        
+        if (p1->val < p2->val) {
+            // set head pointer
+            if (head->next == NULL) {
+                head->next = p1;
+            }
+            
+            p->next = p1;
+            p = p1;
+            
+            p1 = p1->next;
+            
+            continue;
+        }
+        
+        if (p1->val > p2->val) {
+            // set head pointer
+            if (head->next == NULL) {
+                head->next = p2;
+            }
+            
+            p->next = p2;
+            p = p2;
+            
+            p2 = p2->next;
+        }
+    }
+    
+    if (p1 != NULL) {
+        p->next = p1;
+    }
+    
+    if (p2 != NULL) {
+        p->next = p2;
+    }
+    
+    return head;
+}
